@@ -9,6 +9,7 @@ import {
   BriefcaseBusiness,
   ChartNoAxesCombined,
   Clapperboard,
+  FileText,
   FileWarning,
   FolderOpen,
   Mail,
@@ -21,7 +22,6 @@ import {
   Terminal,
   X,
 } from "lucide-react";
-
 type Category = "All work" | "Technical" | "Data & analysis" | "Creative" | "Professional";
 type Project = {
   id: string;
@@ -345,7 +345,45 @@ export default function Home() {
 
       <section className="contact-section section-pad" id="contact">
         <div className="contact-top"><SectionLabel number="06">Contact / next conversation</SectionLabel><span className="contact-orbit">LET’S CONNECT ↗</span></div>
-        <div className="contact-main"><h2>Good work starts<br/>with a conversation<span className="period">.</span></h2><p>For opportunities, collaborations, or a closer look at the work, reach out through the links below.</p><div className="contact-links"><a href="mailto:glennford.sigueatay@gmail.com"><Mail size={18}/><span>Email me</span><ArrowUpRight size={16}/></a><a href="https://www.linkedin.com/in/glennford-atay-a702b63bb/" target="_blank" rel="noreferrer"><ArrowUpRight size={18}/><span>LinkedIn profile</span><ArrowUpRight size={16}/></a><a href="https://github.com/" target="_blank" rel="noreferrer"><Terminal size={18}/><span>GitHub</span><ArrowUpRight size={16}/></a></div></div>
+      
+<div className="contact-main">
+  <h2>
+    Good work starts<br />
+    with a conversation<span className="period">.</span>
+  </h2>
+
+  <p>
+    For opportunities, collaborations, or a closer look at the work, reach out through the links below.
+  </p>
+
+  <div className="contact-links">
+    <a href="mailto:glennford.sigueatay@gmail.com">
+      <Mail size={18} />
+      <span>Email me</span>
+      <ArrowUpRight size={16} />
+    </a>
+
+    <a
+      href="https://www.linkedin.com/in/glennford-atay-a702b63bb/"
+      target="_blank"
+      rel="noreferrer"
+    >
+      <ArrowUpRight size={18} />
+      <span>LinkedIn profile</span>
+      <ArrowUpRight size={16} />
+    </a>
+
+    <a
+      href="/ATAY,GLENNFORD.RESUMÉ.pdf"
+      download
+      className="contact-link"
+    >
+      <FileText size={18} />
+      <span>Download Resume</span>
+      <ArrowUpRight size={16} />
+    </a>
+  </div>
+</div>
         <footer className="footer"><a className="wordmark" href="#home">GA<span>.</span></a><span>THE MULTIPERSPECTIVE INDEX</span><a href="#home">BACK TO TOP ↑</a><span>© 2026 GLENNFORD ATAY</span></footer>
       </section>
 
