@@ -332,6 +332,7 @@ export default function Home() {
 ) : (
   <span className="credential-proof">ADD CERTIFICATE / DATE</span>
 )}
+
 </article>)}
         </div>
         <p className="fine-print credential-note">Before launch, add each issuing organization, completion date, and verification link where available. Use the exact title shown on each certificate.</p>
