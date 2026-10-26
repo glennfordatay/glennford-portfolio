@@ -34,6 +34,8 @@ type Project = {
   theme: string;
   icon: typeof ShieldCheck;
   details: string[];
+  report?: string;
+  reports?: { label: string; url: string }[];
 };
 
 const projects: Project[] = [
@@ -41,6 +43,7 @@ const projects: Project[] = [
     id: "gophish",
     category: "Technical",
     title: "GoPhish Awareness Lab",
+    report: "/projects/Atay,Glennford_GoPhish_Report.docx.pdf",
     subtitle: "SECURITY / 001",
     description:
       "A controlled security-awareness simulation using GoPhish and MailHog in a local Kali Linux environment.",
@@ -59,6 +62,7 @@ const projects: Project[] = [
     id: "cowrie",
     category: "Technical",
     title: "Cowrie SSH Honeypot",
+    report: "/projects/Atay,Glennford_Honeypot_Report.docx.pdf",
     subtitle: "SECURITY / 002",
     description:
       "A contained SSH honeypot lab using Cowrie in Kali Linux, with Windows-to-VM connectivity through VirtualBox NAT forwarding.",
@@ -77,6 +81,7 @@ const projects: Project[] = [
     id: "incident-reporting",
     category: "Technical",
     title: "Incident Reporting",
+    report: "/projects/Activity1_IncidentReport_Atay,Glennford.docx.pdf",
     subtitle: "OPERATIONS / 003",
     description:
       "A reporting-focused work sample for documenting an incident, preserving relevant observations, and communicating next steps.",
@@ -95,6 +100,7 @@ const projects: Project[] = [
     id: "triage",
     category: "Technical",
     title: "Alert Triage",
+    report: "/projects/Activity2_IncidentTickets_Atay,Glennford.docx.pdf",
     subtitle: "OPERATIONS / 004",
     description:
       "A structured approach to reviewing alerts, assessing priority, gathering context, and deciding what needs further investigation.",
@@ -113,6 +119,18 @@ const projects: Project[] = [
     id: "splunk",
     category: "Data & analysis",
     title: "Splunk Activities & Dashboard",
+    
+reports: [
+  {
+    label: "View Dashboard",
+    url: "/images/Atay,Glennford_Activity_4_Splunk%20Dashboard.png",
+  },
+  {
+    label: "View Workbook",
+    url: "/projects/Atay,Glennford_Splunk_Tier1_SOC_Student_Workbook.docx.pdf",
+  },
+],
+
     subtitle: "DATA / 001",
     description:
       "A space for log searches, event exploration, and dashboard visualizations built during Splunk learning activities.",
@@ -131,6 +149,7 @@ const projects: Project[] = [
     id: "wireshark",
     category: "Technical",
     title: "Wireshark Packet Analysis",
+    report: "/projects/Atay,Glennford_Day1_Lab_Student_Worksheet.pdf",
     subtitle: "NETWORKS / 001",
     description:
       "A work area for packet-capture inspection, display filters, protocol observations, and network-traffic interpretation.",
@@ -237,11 +256,37 @@ export default function Home() {
         <div className="project-grid">
           {visibleProjects.map((project) => {
             const Icon = project.icon;
-            return <button className={`project-card project-${project.theme}`} key={project.id} onClick={() => setActiveProject(project)}>
+            return <div className={`project-card project-${project.theme}`} key={project.id} onClick={() => setActiveProject(project)}>
               <div className="project-card-top"><span>{project.subtitle}</span><span className="project-open"><ArrowUpRight size={17}/></span></div>
               <div className="project-visual"><Icon size={34} strokeWidth={1.35}/><span className="visual-index">{project.index}</span><span className="visual-grid-mark">＋</span></div>
-              <div className="project-card-bottom"><div><p className="project-category">{project.category}</p><h3>{project.title}</h3><p className="project-description">{project.description}</p></div><span className="project-status">{project.status}</span></div>
-            </button>;
+              <div className="project-card-bottom"><div><p className="project-category">{project.category}</p><h3>{project.title}</h3><p className="project-description">{project.description}</p>
+                {project.report && (
+  <a
+    href={project.report}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="project-report-link"
+    onClick={(event) => event.stopPropagation()}
+  >
+    View Report ↗
+  </a>
+)}
+                
+              {project.reports?.map((item) => (
+                <a
+                  key={item.url}
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="project-report-link"
+                  onClick={(event) => event.stopPropagation()}
+                >
+                  {item.label} ↗
+                </a>
+              ))}
+
+              </div><span className="project-status">{project.status}</span></div>
+            </div>;
           })}
           {(category === "Creative" || category === "Professional") && <div className="empty-filter"><p className="eyebrow">MORE IN THE ARCHIVE</p><h3>{category === "Creative" ? "Creative work has its own frame." : "Experience is part of the evidence."}</h3><p>{category === "Creative" ? "Film production and selected creative collaborations appear in the experience timeline below." : "Your professional roles and transferable skills are documented in the experience section."}</p><a href={category === "Creative" ? "#experience" : "#experience"} className="text-link">Explore experience <ArrowRight size={15}/></a></div>}
         </div>
